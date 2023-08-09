@@ -22,7 +22,7 @@ router.post("/first",async(req:Request, res:Response) => {
     UserSituation[Id].push({role:"system",content:"최대한 간단하게 '일본어'로만 대답하십시오"})
     UserSituation[Id].push({role:"system",content:"다시한번 말하지만 당신은 일본어만 사용해야합니다"})
     UserSituation[Id].push({role:"system",content:"당신은 상황이나 부적절한 말을 들어면 틀렸다고 이야기 해야 합니다 이것은 일본어 사용바로뒤 2순위로 적용되어야만 합니다"})
-    UserSituation[Id].push({role:"system",content:"당신은 상황이나 부적절한 말을 들어면 틀렸다고 이야기 해야 합니다 이것은 일본어 사용바로뒤 2순위로 적용되어야만 합니다"})
+    UserSituation[Id].push({role:"system",content:"구어체를 사용해야합니다"})
     UserSituation[Id].push({role:"system",content:`상황은 ${SS.Main}입니다 바로 시작하십시오`})
     const result = await GetResultFromDefult(Id)
 

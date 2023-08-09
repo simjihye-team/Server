@@ -1,5 +1,4 @@
-import {BadRequestException} from "@global/exception/Exceptions";
-import {getFilePath} from "@global/env/envConfig";
+import {getFilePath, getGoogle} from "@global/env/envConfig";
 import axios from "axios";
 import * as util from "util";
 import * as fs from "fs";
@@ -7,7 +6,7 @@ import * as path from "path";
 
 
 const speechService = async (jpn: string) => {
-    const {data:{audioContent}} = await axios.post("https://texttospeech.googleapis.com/v1/text:synthesize?key=AIzaSyCph7QCAD1DG4lB83AXLgvWc5tz3VpwrV4",
+    const {data:{audioContent}} = await axios.post("https://texttospeech.googleapis.com/v1/text:synthesize?key="+getGoogle(),
         {
             voice: {
                 languageCode: "ja-JP",
