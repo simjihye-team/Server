@@ -36,7 +36,7 @@ router.post("/text",upload.single('audio'),async(req:Request, res:Response) => {
     const {data} = req.body;
 
     const {chatId}: { chatId: number } = JSON.parse(data)
-    console.log(req.body)
+    console.log(chatId)
     if (!chatId) throw new BadRequestException()
     if (!UserSituation[chatId]) throw new BadRequestException()
 
@@ -45,10 +45,9 @@ router.post("/text",upload.single('audio'),async(req:Request, res:Response) => {
 
     const soundName = await speechService(text)
     UserSituation[chatId].push({role: "user", content: text, pronun: soundName})
-    const Gpt = await GetResultFromDefult(chatId)
 
 
-    return res.status(200).json({result: [{role: "user", content: text, pronun: soundName}, {...Gpt}]})
+    return res.status(200).json({result: {role: "user", content: text, pronun: soundName}})
 
 })
 

@@ -10,6 +10,7 @@ import {GlobalResponseService} from "@global/response/GlobalResponseService";
 import {IndexRouter} from "@src/Controller/IndexController";
 import {ChangeVoice2Text} from "@src/Service/clova/ClovaService";
 import {speechService} from "@src/Service/speech/speechService";
+import * as console from "console";
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use((req:Request, res:Response, next:NextFunction) => {
 
 app.use(((err: HttpError, req: Request, res: Response, next: NextFunction) => {
         const {httpCode, message} = err;
+        console.log(err)
         const response = new GlobalResponseDTO(httpCode ?? 500,message ?? "Internal Server Error",null);
         GlobalResponseService(res,response);
 }) as ErrorRequestHandler);

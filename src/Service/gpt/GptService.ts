@@ -5,7 +5,6 @@ import {BadRequestException, TooManyRequestException} from "@global/exception/Ex
 import {AxiosError} from "axios";
 import {speechService} from "@src/Service/speech/speechService";
 
-
 const configuration = new Configuration({
     apiKey: getOpenAISecret(),
 });
@@ -34,7 +33,7 @@ const GetResultFromDefult = async(Id:number) => {
         content.replace( /\(.*\)/ig,"")
         return {role,content:content.replace( /\(.*\)/ig,""),pronun}
     }catch (e:AxiosError | any) {
-        console.log(e.response.data)
+        console.log(e)
         if(e?.response?.status == 429){
             throw new TooManyRequestException()
         }

@@ -29,6 +29,14 @@ router.post("/first",async(req:Request, res:Response) => {
     res.status(200).json({ChatId:Id ,result})
 })
 
+router.post("/middle",async(req:Request, res:Response) => {
+    const {questionId}:{questionId:number} = req.body
+    if(!UserSituation[questionId]) throw new BadRequestException()
+    const result = await GetResultFromDefult(questionId)
+
+    res.status(200).json({result})
+})
+
 router.get("/:QuestionID",async (req:Request,res:Response)=>{
     const {QuestionID} = req.params;
 
